@@ -112,11 +112,23 @@ public class University {
         }
     }
 
+    public void printClass(int i){
+        if(!classes.isEmpty()){
+            if((i-1) < classes.size()) {
+                System.out.println(classes.get(i-1));
+            }else {
+                System.out.println("There is no class associated to the number entered");
+            }
+        }else {
+            System.out.println("There are currently no classes");
+        }
+    }
+
     public void printClassStudents(int i){
         if(!classes.isEmpty()){
             if((i-1) < classes.size()) {
-                if(!classes.get(i).getStudents().isEmpty()) {
-                    for (Student s : classes.get(i).getStudents()) {
+                if(!classes.get(i-1).getStudents().isEmpty()) {
+                    for (Student s : classes.get(i-1).getStudents()) {
                         System.out.println(s);
                     }
                 }else {
