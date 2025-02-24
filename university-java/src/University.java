@@ -142,4 +142,15 @@ public class University {
         }
     }
 
+    public void addStudentToClass(Student student, int i){
+        if(!classes.isEmpty()){
+            if((i-1) < classes.size()) {
+                classes.get(i-1).addStudent(student);
+            }else {
+                System.out.println("There is no class associated to the number entered");
+            }
+        }else {
+            System.out.println("There are currently no classes");
+        }
+    }
 }
