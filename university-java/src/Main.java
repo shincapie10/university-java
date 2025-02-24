@@ -71,7 +71,13 @@ public class Main {
 
             switch(selection){
                 case "1":
-                    university.printTeachers();
+                    if(!university.getTeachers().isEmpty()){
+                        for (Teacher t : university.getTeachers()) {
+                            System.out.println(t);
+                        }
+                    }else {
+                        System.out.println("There are currently no teachers");
+                    }
                     break;
                 case "2":
                     university.printClasses();
@@ -86,6 +92,7 @@ public class Main {
                         System.out.println();
                         break;
                     }
+                    System.out.println();
                     break;
                 case "3":
                     System.out.println("Enter the name of the student");
@@ -93,10 +100,26 @@ public class Main {
                     System.out.println("Enter the age of the student");
                     Student s = new Student(sName, sc.nextInt());
                     university.addStudent(s);
-                    university.printClasses();
                     System.out.println("Select a class to which the student will be added");
+                    university.printClasses();
                     sel = sc.nextInt();
                     sc.nextLine();
+                    university.addStudentToClass(s, sel);
+                    System.out.println();
+                    break;
+                case "4":
+                    System.out.println("Enter the name of the class");
+                    String cName = sc.nextLine();
+                    System.out.println("Enter the classroom that will be assigned to the class");
+                    String cClassroom = sc.nextLine();
+                    System.out.println("Select a teacher for the class");
+                    university.printTeachers();
+                    sel = sc.nextInt();
+                    sc.nextLine();
+                    Teacher t;
+                    //UniversityClass c = new UniversityClass(cName, cClassroom, t);
+
+
             }
 
         }while(!flag);
