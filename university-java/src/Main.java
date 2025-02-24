@@ -56,6 +56,7 @@ public class Main {
         boolean flag = false;
         Scanner sc = new Scanner(System.in);
         String selection1;
+        int sel;
 
         do {
             System.out.println("Please select an option");
@@ -73,7 +74,29 @@ public class Main {
                     university.printTeachers();
                     break;
                 case "2":
-                    
+                    university.printClasses();
+                    System.out.println("Select a class to see its information");
+                    sel = sc.nextInt();
+                    sc.nextLine();
+                    university.printClass(sel);
+                    System.out.println("Print student information? (Type 'Yes' to print, anything else to exit)");
+                    if("Y".equals(sc.nextLine())){
+                        university.printClassStudents(sel);
+                    }else {
+                        System.out.println();
+                        break;
+                    }
+                    break;
+                case "3":
+                    System.out.println("Enter the name of the student");
+                    String sName = sc.nextLine();
+                    System.out.println("Enter the age of the student");
+                    Student s = new Student(sName, sc.nextInt());
+                    university.addStudent(s);
+                    university.printClasses();
+                    System.out.println("Select a class to which the student will be added");
+                    sel = sc.nextInt();
+                    sc.nextLine();
             }
 
         }while(!flag);
