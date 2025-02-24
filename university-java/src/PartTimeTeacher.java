@@ -19,4 +19,10 @@ public class PartTimeTeacher extends Teacher {
         this.activeHours = activeHours;
         calcSalary();
     }
+
+    @Override
+    public String toString() {
+        return ("Teacher: " + this.getName() + " - Salary: " + this.getSalary() + " - Active Hours: "
+                + activeHours);
+    }
 }

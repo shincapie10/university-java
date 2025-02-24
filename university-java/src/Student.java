@@ -26,4 +26,9 @@ public class Student{
     public UUID getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return ("Student: " + name + " - Age: " + age);
+    }
 }

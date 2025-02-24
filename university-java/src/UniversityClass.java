@@ -63,4 +63,10 @@ public class UniversityClass {
             System.out.println("There are currently no students");
         }
     }
+
+    @Override
+    public String toString() {
+        return ("Class: " + name + " - Classroom: " + classroom + " - Teacher: "
+                + teacher.getName() + " - Students: " + students.size());
+    }
 }

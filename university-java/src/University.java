@@ -95,17 +95,38 @@ public class University {
     public void printTeachers(){
         if(!teachers.isEmpty()){
             for (Teacher t : teachers) {
-                if (t instanceof FullTimeTeacher) {
-                    System.out.println("Teacher: " + t.getName() + " - Salary: " + t.getSalary() + " - Experience Years: "
-                            + ((FullTimeTeacher) t).getExperienceYears());
-                } else if (t instanceof PartTimeTeacher) {
-                    System.out.println("Teacher: " + t.getName() + " - " + t.getSalary() + " - Active Hours: "
-                            + ((PartTimeTeacher) t).getActiveHours());
-                }
-
+                System.out.println(t);
             }
         }else {
             System.out.println("There are currently no teachers");
+        }
+    }
+
+    public void printClasses(){
+        if(!classes.isEmpty()){
+            for(int i = 0; i < classes.size(); i++){
+                System.out.println((i+1) + ". " + classes.get(i).getName());
+            }
+        }else {
+            System.out.println("There are currently no classes");
+        }
+    }
+
+    public void printClassStudents(int i){
+        if(!classes.isEmpty()){
+            if((i-1) < classes.size()) {
+                if(!classes.get(i).getStudents().isEmpty()) {
+                    for (Student s : classes.get(i).getStudents()) {
+                        System.out.println(s);
+                    }
+                }else {
+                    System.out.println("This class has no students");
+                }
+            }else {
+                System.out.println("There is no class associated to the number entered");
+            }
+        }else {
+            System.out.println("There are currently no classes");
         }
     }
 
