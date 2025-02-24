@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public abstract class University {
+public class University {
     private final ArrayList<Student> students;
     private final ArrayList<Teacher> teachers;
     private final ArrayList<UniversityClass> classes;
@@ -23,23 +23,90 @@ public abstract class University {
         return classes;
     }
 
-    public abstract void addStudent();
+    public void addStudent(Student student){
+        students.add(student);
+    }
 
-    public abstract Student removeStudent();
+    public void removeStudent(String name){
+        boolean found = false;
+        if(!students.isEmpty()) {
+            for (int i = 0; i < students.size(); i++) {
+                if(name.equals(students.get(i).getName())){
+                    found = true;
+                    students.remove(i);
+                    System.out.println("Student removed successfully");
+                    break;
+                }
+            }
+            if(!found){
+                System.out.println("Student not found");
+            }
+        }else{
+            System.out.println("There are currently no students");
+        }
+    }
 
-    public abstract Student searchStudent();
+    public void addTeacher(Teacher teacher){
+        teachers.add(teacher);
+    }
 
-    public abstract void addTeacher();
+    public void removeTeacher(String name){
+        boolean found = false;
+        if(!teachers.isEmpty()) {
+            for (int i = 0; i < teachers.size(); i++) {
+                if(name.equals(teachers.get(i).getName())){
+                    found = true;
+                    teachers.remove(i);
+                    System.out.println("Teacher removed successfully");
+                    break;
+                }
+            }
+            if(!found){
+                System.out.println("Teacher not found");
+            }
+        }else{
+            System.out.println("There are currently no teachers");
+        }
+    }
 
-    public abstract Teacher removeTeacher();
+    public void addClass(UniversityClass uClass){
+        classes.add(uClass);
+    }
 
-    public abstract Teacher searchTeacher();
+    public void removeClass(String name){
+        boolean found = false;
+        if(!classes.isEmpty()) {
+            for (int i = 0; i < classes.size(); i++) {
+                if(name.equals(classes.get(i).getName())){
+                    found = true;
+                    classes.remove(i);
+                    System.out.println("Class removed successfully");
+                    break;
+                }
+            }
+            if(!found){
+                System.out.println("Class not found");
+            }
+        }else{
+            System.out.println("There are currently no classes");
+        }
+    }
 
-    public abstract void addClass();
+    public void printTeachers(){
+        if(!teachers.isEmpty()){
+            for (Teacher t : teachers) {
+                if (t instanceof FullTimeTeacher) {
+                    System.out.println("Teacher: " + t.getName() + " - Salary: " + t.getSalary() + " - Experience Years: "
+                            + ((FullTimeTeacher) t).getExperienceYears());
+                } else if (t instanceof PartTimeTeacher) {
+                    System.out.println("Teacher: " + t.getName() + " - " + t.getSalary() + " - Active Hours: "
+                            + ((PartTimeTeacher) t).getActiveHours());
+                }
 
-    public abstract UniversityClass removeClass();
-
-    public abstract UniversityClass searchClass();
-
+            }
+        }else {
+            System.out.println("There are currently no teachers");
+        }
+    }
 
 }
