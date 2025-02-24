@@ -92,16 +92,6 @@ public class University {
         }
     }
 
-    public void printTeachers(){
-        if(!teachers.isEmpty()){
-            for (Teacher t : teachers) {
-                System.out.println(t);
-            }
-        }else {
-            System.out.println("There are currently no teachers");
-        }
-    }
-
     public void printClasses(){
         if(!classes.isEmpty()){
             for(int i = 0; i < classes.size(); i++){
@@ -147,7 +137,51 @@ public class University {
             if((i-1) < classes.size()) {
                 classes.get(i-1).addStudent(student);
             }else {
-                System.out.println("There is no class associated to the number entered");
+                System.out.println("There is no class associated to this index");
+            }
+        }else {
+            System.out.println("There are currently no classes");
+        }
+    }
+
+    public void printStudents(){
+        if(!students.isEmpty()){
+            for(int i = 0; i < students.size(); i++){
+                System.out.println((i+1) + ". " + students.get(i).getName());
+            }
+        }else {
+            System.out.println("There are currently no students");
+        }
+    }
+
+    public void printTeachers(){
+        if(!teachers.isEmpty()){
+            for(int i = 0; i < teachers.size(); i++){
+                System.out.println((i+1) + ". " + teachers.get(i).getName());
+            }
+        }else {
+            System.out.println("There are currently no teachers");
+        }
+    }
+
+    public void studentClasses(int studentIndex){
+        if(!classes.isEmpty()){
+            if(!students.isEmpty()){
+                if((studentIndex-1) < students.size()){
+                    Student student = students.get(studentIndex);
+                    System.out.println("The student is in the following classes:");
+                    for(UniversityClass c : classes){
+                        for(Student s : c.getStudents()){
+                            if(s.getId() == student.getId()){
+                                System.out.println("- Class: " + c.getName());
+                            }
+                        }
+                    }
+                }else {
+                    System.out.println("There is no student associated to this index");
+                }
+            }else {
+                System.out.println("There are currently no students");
             }
         }else {
             System.out.println("There are currently no classes");
