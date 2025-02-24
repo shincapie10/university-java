@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public abstract class UniversityClass {
+public class UniversityClass {
     private String name;
     private String classroom;
     private final ArrayList<Student> students;
@@ -41,9 +41,26 @@ public abstract class UniversityClass {
         return students;
     }
 
-    public abstract void addStudent();
+    public void addStudent(Student student){
+        students.add(student);
+    }
 
-    public abstract void removeStudent();
-
-    public abstract void searchStudent();
+    public void removeStudent(String name){
+        boolean found = false;
+        if(!students.isEmpty()) {
+            for (int i = 0; i < students.size(); i++) {
+                if(name.equals(students.get(i).getName())){
+                    found = true;
+                    students.remove(i);
+                    System.out.println("Student removed successfully");
+                    break;
+                }
+            }
+            if(!found){
+                System.out.println("Student not found");
+            }
+        }else{
+            System.out.println("There are currently no students");
+        }
+    }
 }
