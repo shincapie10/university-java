@@ -19,4 +19,10 @@ public class FullTimeTeacher extends Teacher{
         this.experienceYears = experienceYears;
         calcSalary();
     }
+
+    @Override
+    public String toString() {
+        return ("Teacher: " + this.getName() + " - Salary: " + this.getSalary() + " - Experience Years: "
+                + experienceYears);
+    }
 }
