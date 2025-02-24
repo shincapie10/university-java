@@ -1,7 +1,7 @@
 public class PartTimeTeacher extends Teacher {
     private int activeHours;
 
-    public PartTimeTeacher(String name, double salary, int activeHours) {
+    public PartTimeTeacher(double salary, String name, int activeHours) {
         super(name);
         this.setSalary(salary*activeHours);
         this.activeHours = activeHours;
