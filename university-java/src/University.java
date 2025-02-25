@@ -135,7 +135,18 @@ public class University {
     public void addStudentToClass(Student student, int i){
         if(!classes.isEmpty()){
             if(i >= 0 && i < classes.size()) {
-                classes.get(i-1).addStudent(student);
+                boolean dupe = false;
+                for(Student s : students){
+                    if(s.getId() == student.getId()){
+                        dupe = true;
+                        break;
+                    }
+                }
+                if(!dupe) {
+                    classes.get(i - 1).addStudent(student);
+                }else {
+                    System.out.println("The student is already in this class");
+                }
             }else {
                 System.out.println("There is no class associated to this index");
             }
@@ -190,7 +201,7 @@ public class University {
 
     public Teacher searchTeacher(int i) {
         if (i >= 0 && i < teachers.size()) {
-            return teachers.get(i);
+            return teachers.get(i-1);
         } else {
             System.out.println("There is no teacher associated to this index");
             return null;
@@ -199,7 +210,7 @@ public class University {
 
     public UniversityClass searchClass(int i) {
         if (i >= 0 && i < classes.size()) {
-            return classes.get(i);
+            return classes.get(i-1);
         } else {
             System.out.println("There is no class associated to this index");
             return null;
@@ -208,7 +219,7 @@ public class University {
 
     public Student searchStudent(int i) {
         if (i >= 0 && i < students.size()) {
-            return students.get(i);
+            return students.get(i-1);
         } else {
             System.out.println("There is no student associated to this index");
             return null;
