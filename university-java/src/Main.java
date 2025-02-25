@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        FullTimeTeacher ft1 = new FullTimeTeacher(500, "Juan Rios", 7);
+        FullTimeTeacher ft1 = new FullTimeTeacher(500, "Juan Rios", 8);
         FullTimeTeacher ft2 = new FullTimeTeacher(600, "Luis Perez", 25);
         PartTimeTeacher pt1 = new PartTimeTeacher(350, "Andres Correa", 20);
         PartTimeTeacher pt2 = new PartTimeTeacher(300, "Angela Jaramillo", 18);
@@ -78,15 +78,21 @@ public class Main {
                     }else {
                         System.out.println("There are currently no teachers");
                     }
+                    System.out.println();
                     break;
                 case "2":
                     university.printClasses();
                     System.out.println("Select a class to see its information");
                     sel = sc.nextInt();
                     sc.nextLine();
+                    if(sel <= 0 || sel > university.getClasses().size()){
+                        System.out.println("Bad index. Returning to main menu");
+                        System.out.println();
+                        break;
+                    }
                     university.printClass(sel);
                     System.out.println("Print student information? (Type 'Yes' to print, anything else to exit)");
-                    if("Y".equals(sc.nextLine())){
+                    if("Yes".equals(sc.nextLine())){
                         university.printClassStudents(sel);
                     }else {
                         System.out.println();
@@ -98,12 +104,18 @@ public class Main {
                     System.out.println("Enter the name of the student");
                     String sName = sc.nextLine();
                     System.out.println("Enter the age of the student");
-                    Student s = new Student(sName, sc.nextInt());
-                    university.addStudent(s);
+                    int sAge = sc.nextInt();
                     System.out.println("Select a class to which the student will be added");
                     university.printClasses();
                     sel = sc.nextInt();
                     sc.nextLine();
+                    if(sel <= 0 || sel > university.getClasses().size()){
+                        System.out.println("Bad index. Returning to main menu");
+                        System.out.println();
+                        break;
+                    }
+                    Student s = new Student(sName, sAge);
+                    university.addStudent(s);
                     university.addStudentToClass(s, sel);
                     System.out.println();
                     break;
@@ -116,10 +128,40 @@ public class Main {
                     university.printTeachers();
                     sel = sc.nextInt();
                     sc.nextLine();
-                    Teacher t;
-                    //UniversityClass c = new UniversityClass(cName, cClassroom, t);
-
-
+                    Teacher t = university.searchTeacher(sel);
+                    UniversityClass c = new UniversityClass(cName, cClassroom, t);
+                    boolean flag2 = false;
+                    do {
+                        System.out.println();
+                        System.out.println("Add students to the class");
+                        university.printStudents();
+                        System.out.println("Type '0' to go back to the main menu");
+                        int index = sc.nextInt();
+                        sc.nextLine();
+                        if(index == 0){
+                            flag2 = true;
+                        }else {
+                            Student s20 = university.searchStudent(index);
+                            c.addStudent(s20);
+                        }
+                    }while(!flag2);
+                    university.addClass(c);
+                    System.out.println();
+                    break;
+                case "5":
+                    System.out.println("Select a student to show their classes");
+                    university.printStudents();
+                    sel = sc.nextInt();
+                    sc.nextLine();
+                    university.studentClasses(sel);
+                    System.out.println();
+                    break;
+                case "Exit":
+                    flag = true;
+                    break;
+                default:
+                    System.out.println("Please select a correct option");
+                    System.out.println();
             }
 
         }while(!flag);

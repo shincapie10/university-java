@@ -42,7 +42,19 @@ public class UniversityClass {
     }
 
     public void addStudent(Student student){
-        students.add(student);
+        boolean flag = false;
+        for(Student s : students){
+            if(s.getId() == student.getId()) {
+                flag = true;
+                break;
+            }
+        }
+        if(!flag) {
+            students.add(student);
+        }else {
+            System.out.println("The student is already in this class");
+        }
+
     }
 
     public void removeStudent(String name){
