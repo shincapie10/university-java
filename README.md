@@ -3,10 +3,10 @@
 Welcome to the University Class Tracking System! This Java application is designed to help manage and track university classes, teachers, and students efficiently. This README provides an overview of the system's functionality, how to set it up, and how to use it.
 
 ## Table of Contents
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Setup Instructions](#setup-instructions)
-- [Usage](#usage)
+- [Features]
+- [Technologies Used]
+- [Setup Instructions]
+- [Usage]
 
 ## Features 🌟
 - **Teacher Management**: 
