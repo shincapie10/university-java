@@ -104,7 +104,7 @@ public class University {
 
     public void printClass(int i){
         if(!classes.isEmpty()){
-            if((i-1) < classes.size()) {
+            if(i >= 0 && i < classes.size()) {
                 System.out.println(classes.get(i-1));
             }else {
                 System.out.println("There is no class associated to the number entered");
@@ -116,7 +116,7 @@ public class University {
 
     public void printClassStudents(int i){
         if(!classes.isEmpty()){
-            if((i-1) < classes.size()) {
+            if(i >= 0 && i < classes.size()) {
                 if(!classes.get(i-1).getStudents().isEmpty()) {
                     for (Student s : classes.get(i-1).getStudents()) {
                         System.out.println(s);
@@ -134,7 +134,7 @@ public class University {
 
     public void addStudentToClass(Student student, int i){
         if(!classes.isEmpty()){
-            if((i-1) < classes.size()) {
+            if(i >= 0 && i < classes.size()) {
                 classes.get(i-1).addStudent(student);
             }else {
                 System.out.println("There is no class associated to this index");
@@ -164,11 +164,11 @@ public class University {
         }
     }
 
-    public void studentClasses(int studentIndex){
+    public void studentClasses(int i){
         if(!classes.isEmpty()){
             if(!students.isEmpty()){
-                if((studentIndex-1) < students.size()){
-                    Student student = students.get(studentIndex);
+                if(i >= 0 && i < students.size()){
+                    Student student = students.get(i);
                     System.out.println("The student is in the following classes:");
                     for(UniversityClass c : classes){
                         for(Student s : c.getStudents()){
@@ -185,6 +185,33 @@ public class University {
             }
         }else {
             System.out.println("There are currently no classes");
+        }
+    }
+
+    public Teacher searchTeacher(int i) {
+        if (i >= 0 && i < teachers.size()) {
+            return teachers.get(i);
+        } else {
+            System.out.println("There is no teacher associated to this index");
+            return null;
+        }
+    }
+
+    public UniversityClass searchClass(int i) {
+        if (i >= 0 && i < classes.size()) {
+            return classes.get(i);
+        } else {
+            System.out.println("There is no class associated to this index");
+            return null;
+        }
+    }
+
+    public Student searchStudent(int i) {
+        if (i >= 0 && i < students.size()) {
+            return students.get(i);
+        } else {
+            System.out.println("There is no student associated to this index");
+            return null;
         }
     }
 }
